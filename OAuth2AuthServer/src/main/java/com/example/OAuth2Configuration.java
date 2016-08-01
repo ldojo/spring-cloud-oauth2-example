@@ -26,11 +26,11 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("web_app")
-                .scopes("FOO")
+                .withClient("pim_client").secret("pim_secret")
+                .scopes("PIM")
                 .autoApprove(true)
                 .authorities("FOO_READ", "FOO_WRITE")
-                .authorizedGrantTypes("implicit","refresh_token", "password", "authorization_code");
+                .authorizedGrantTypes("implicit","refresh_token", "password", "authorization_code", "client_credentials").resourceIds("PIM");
     }
 
     @Override

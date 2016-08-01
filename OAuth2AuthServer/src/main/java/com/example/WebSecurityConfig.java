@@ -37,20 +37,20 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
             .and()
                 .authorizeRequests()
-                .antMatchers("/**").authenticated()
-            .and()
-                .httpBasic();
+                .antMatchers("/**").permitAll();
+           // .and()
+           //     .httpBasic();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("reader")
-                .password("reader")
-                .authorities("FOO_READ")
-                .and()
-                .withUser("writer")
-                .password("writer")
-                .authorities("FOO_READ", "FOO_WRITE");
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("reader")
+//                .password("reader")
+//                .authorities("FOO_READ")
+//                .and()
+//                .withUser("writer")
+//                .password("writer")
+//                .authorities("FOO_READ", "FOO_WRITE");
+//    }
 }
